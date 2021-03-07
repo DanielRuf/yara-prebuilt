@@ -25,8 +25,9 @@ jobs:
           sudo apt-get update
           sudo apt-get install gcc-7 g++-7
           sudo update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-7 60 --slave /usr/bin/g++ g++ /usr/bin/g++-7
-          git clone https://github.com/VirusTotal/yara.git yara-source
-          cd yara-source
+          wget https://github.com/VirusTotal/yara/archive/v4.0.5.tar.gz
+          tar -zxf v4.0.5.tar.gz
+          cd yara-4.0.5
           sudo ./bootstrap.sh
           sudo ./configure
           sudo make
@@ -37,8 +38,6 @@ jobs:
         if: startsWith(github.ref, 'refs/tags/')
         with:
           files: |
-            yara-source/yara
-            yara-source/config.log
-            yara-source/config.status
+            yara-4.0.5/yara
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
