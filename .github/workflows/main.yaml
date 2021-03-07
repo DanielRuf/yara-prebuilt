@@ -6,14 +6,7 @@ jobs:
   compile:
     runs-on: ubuntu-16.04
     steps:
-
-      - name: Downgrade OpenSSL
-        run: |
-          openssl version
-          curl https://www.openssl.org/source/openssl-1.0.2g.tar.gz | tar xz && cd openssl-1.0.2g && sudo ./config && sudo make && sudo make install
-          sudo ln -sf /usr/local/ssl/bin/openssl `which openssl`
-          openssl version
-      - name: Compile yara
+      - name: Compile yara (Ubuntu 16, OpenSSL 1.0.2g)
           # sudo apt-get install python2.7
           # sudo apt-get install cmake
           #  --host=x86_64-w64-mingw32
@@ -32,8 +25,6 @@ jobs:
           sudo ./bootstrap.sh
           sudo ./configure
           sudo make
-          ls -al
-          ls -al libyara/.libs
       - name: Release
         uses: softprops/action-gh-release@v1
         if: startsWith(github.ref, 'refs/tags/')
