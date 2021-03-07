@@ -10,10 +10,8 @@ jobs:
       - name: Downgrade OpenSSL
         run: |
           openssl version
-          curl https://www.openssl.org/source/openssl-1.0.2g.tar.gz | tar xz && cd openssl-1.0.2g && sudo ./config --prefix=/opt/openssl/1.0.2g && sudo make && sudo make install
+          curl https://www.openssl.org/source/openssl-1.0.2g.tar.gz | tar xz && cd openssl-1.0.2g && sudo ./config && sudo make && sudo make install
           sudo ln -sf /usr/local/ssl/bin/openssl `which openssl`
-          export CFLAGS=\ -I/opt/openssl/1.0.2g/include
-          export LDFLAGS="$LDFLAGS -L/opt/openssl/1.0.2g/lib -lssl"
           openssl version
       - name: Compile yara
           # sudo apt-get install python2.7
@@ -22,7 +20,7 @@ jobs:
           # libssl-dev=1.0.2g-1ubuntu4
         run: |
           openssl version
-          sudo apt-get install gcc-mingw-w64 automake libtool make gcc pkg-config
+          sudo apt-get install gcc-mingw-w64 automake libtool libssl-dev=1.0.2g-1ubuntu4 make gcc pkg-config
           sudo apt-get install -y software-properties-common
           sudo add-apt-repository ppa:ubuntu-toolchain-r/test
           sudo apt-get update
