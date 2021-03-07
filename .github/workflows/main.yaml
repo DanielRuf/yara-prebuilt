@@ -32,7 +32,7 @@ jobs:
         with:
           files: |
             yara-source/yara
-            yara-source/configure.log
-            yara-source/configure.status
+            yara-source/config.log
+            yara-source/config.status
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
