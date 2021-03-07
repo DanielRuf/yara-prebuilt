@@ -21,9 +21,9 @@ jobs:
           sudo apt-get install automake libtool make gcc pkg-config
           git clone https://github.com/VirusTotal/yara.git yara-source
           cd yara-source
-          ./bootstrap.sh
-          ./configure
-          make
+          sudo ./bootstrap.sh
+          sudo ./configure
+          sudo make
           ls -al
           ls -al libyara/.libs
       - name: Release
@@ -32,5 +32,7 @@ jobs:
         with:
           files: |
             yara-source/yara
+            yara-source/configure.log
+            yara-source/configure.status
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
