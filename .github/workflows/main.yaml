@@ -6,7 +6,7 @@ on:
       - main  # Set a branch to deploy
 
 jobs:
-  deploy:
+  compile:
     runs-on: ubuntu-16.04
     steps:
 
@@ -14,6 +14,7 @@ jobs:
           # sudo apt-get install python2.7
           # sudo apt-get install cmake
         run: |
+          openssl version
           git clone https://github.com/VirusTotal/yara.git yara-source
           cd yara-source
           ./bootstrap.sh
