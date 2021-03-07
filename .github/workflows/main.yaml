@@ -28,3 +28,9 @@ jobs:
           make
           ls -al
           ls -al libyara/.libs
+      - name: Release
+        uses: softprops/action-gh-release@v1
+        with:
+          files: yara-source/yara
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
