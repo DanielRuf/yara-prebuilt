@@ -1,0 +1,23 @@
+name: CI
+
+on:
+  push:
+    branches:
+      - main  # Set a branch to deploy
+
+jobs:
+  deploy:
+    runs-on: ubuntu-16.04
+    steps:
+
+      - name: Compile yara
+          # sudo apt-get install python2.7
+          # sudo apt-get install cmake
+        run: |
+          git clone https://github.com/VirusTotal/yara.git yara-source
+          cd yara-source
+          ./bootstrap.sh
+          ./configure
+          make
+          ls -al
+          ls -al libyara/.libs
