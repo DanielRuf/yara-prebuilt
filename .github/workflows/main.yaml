@@ -16,6 +16,7 @@ jobs:
       - name: Compile yara
           # sudo apt-get install python2.7
           # sudo apt-get install cmake
+          #  --host=x86_64-w64-mingw32
         run: |
           openssl version
           sudo apt-get install gcc-mingw-w64 automake libtool make gcc pkg-config
@@ -27,7 +28,7 @@ jobs:
           git clone https://github.com/VirusTotal/yara.git yara-source
           cd yara-source
           sudo ./bootstrap.sh
-          sudo ./configure --host=x86_64-w64-mingw32
+          sudo ./configure
           sudo make
           ls -al
           ls -al libyara/.libs
